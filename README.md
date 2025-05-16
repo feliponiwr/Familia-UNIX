@@ -1,5 +1,30 @@
-# Welcome to GitHub Desktop!
+#!/bin/bash
 
-This is your README. READMEs are where you can communicate what your project is and how to use it.
+CONFIG_DIR="/etc/opt/remi/php83/php-fpm.d"
 
-Write your name on line 6, save it, and then head back to GitHub Desktop.
+if [ ! -d "$CONFIG_DIR" ]; then
+  echo "Diretório de configuração não encontrado: $CONFIG_DIR"
+  exit 1
+fi
+
+CONF_FILES=$(find "$CONFIG_DIR" -maxdepth 1 -type f -name "*.conf")
+
+if [ -z "$CONF_FILES" ]; then
+  echo "Nenhum arquivo .conf encontrado em $CONFIG_DIR"
+  exit 1
+fi
+
+for FILE in $CONF_FILES; do
+  MAX_CHILDREN=$(grep -E "^pm.max_children\s*=" "$FILE" | awk -F '=' '{print $2}' | tr -d ' ')
+  POOL_NAME=$(basename "$FILE")
+  if [ -n "$MAX_CHILDREN" ]; then
+    echo "Pool: $POOL_NAME"
+    echo "pm.max_children = $MAX_CHILDREN"
+    echo "----------------------------"
+  else
+    echo "Pool: $POOL_NAME"
+    echo "pm.max_children não configurado."
+    echo "----------------------------"
+  fi
+done
+    

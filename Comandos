@@ -63,6 +63,8 @@ Editar
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
 Básicos
 sudo apt update -- Verifica se existe atualizações no repo do linux utilizado.
 sudo apt upgrade -- Faz as atualizações encontradas.
@@ -73,6 +75,25 @@ useradd --help -- Caso não lembre como adicionar um novo usuário ( --help pode
 sudo usermod -a -G grupos nmDoUsuario -- Adiciona o usuario em determinado grupo.
 sudo apt install htop -- Instala a ferramenta htop para monitorar os recursos utilizados no servidor.
 sudo apt install nomeDoPrograma -- Instala o programa desejado.
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Para aumentar o filesystem do /
+ssh (servidor)
+sudo su -
+aumentaRootVG.sh
+s (para confirmar)
+df -h (para ver se deu tudo certo)
+
+Para aumentar qualquer outro filesystem:
+ssh (servidor)
+sudo su -
+aumentaFilesystem.sh
+s (para confirmar)
+df -h (para ver se deu tudo certo)
 
 
 

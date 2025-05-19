@@ -97,10 +97,62 @@ df -h (para ver se deu tudo certo)
 
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
+Para adicionar um novo ip no cliente utilize
+sudo vim /usr/local/soft4/etc/softdesk.iptables.conf
+*para salavar utilize :wq
 
+para verificar o ip utilize
+sudo /usr/local/soft4/bin/processaIptables.sh
+* copiar as linhas INPUT --> FOWARD --> OUTPUT que constam o novo IP
+
+
+Para finalizar execute 
+sudo iptables -L INPUT -n --line-numbers
+*ele trara as informações do serviço atualiazdo.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Para atualizar o certificado digital da MegaPC.
+
+1. Descobrir em qual servidor está instalado o Softdesk da MegaPC.
+
+2. Criar regra de NAT para permitir acesso a porta 80:
+   a) Acessar a VCloud Unifique
+   b) Acessar no site SC > Edge > 127858_SOFT4_GW_T1 > Serviços NAT
+   c) Criar uma nova regra:
+        - Nome: romta - http
+        - Ação do NAT: DNAT
+        - IP Externo: 179.127.167.214
+        - Porta Externa: 80
+        - IP Interno: 192.168.34.8
+        - Aplicativo: HTTP (Para escolher o aplicativo, clique em editar, habilite "Escolha um aplicativo específico", procure pelo HTTP na lista.
+
+3. Acessar o servidor:
+ssh roma
+
+4. Alterne para o super usuário root:
+sudo su
+
+5. Execute o comando para atualização do certificado, digite a opção 2 e o caminho do webroot do cliente
+certbot certonly -d suporte.megapc.com.br
+2
+/var/www/vhosts/megapc.soft4.com.br/softdesk/public/
+
+6. Certifique que não há erros no processo e recarregue a configuração do Apache
+apachectl configtest
+systemctl reload httpd
+
+7. Elimine a regra roma - http de NAT no VCloud para não mais permitir o acesso a porta 80.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

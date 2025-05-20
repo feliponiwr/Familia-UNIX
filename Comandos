@@ -41,25 +41,23 @@ done
 Como usar:
 Crie o arquivo check_all_pools_max_children.sh:
 
-bash
 Copiar
-Editar
+
 nano check_all_pools_max_children.sh
+
 Cole o script acima, salve (Ctrl + O) e saia (Ctrl + X).
 
 Dê permissão de execução:
-
-bash
-Copiar
-Editar
 chmod +x check_all_pools_max_children.sh
-Rode:
 
 bash
-Copiar
-Editar
+
 ./check_all_pools_max_children.sh
 
+
+Para selecionar o cliente utilize o comando 
+
+sudo nano /etc/opt/remi/php83/php-fpm.d/client1.conf
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

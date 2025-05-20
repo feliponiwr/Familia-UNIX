@@ -67,13 +67,21 @@ sudo nano /etc/opt/remi/php83/php-fpm.d/client1.conf
 
 Básicos
 sudo apt update -- Verifica se existe atualizações no repo do linux utilizado.
+
 sudo apt upgrade -- Faz as atualizações encontradas.
+
 Pode ser executado mais de uma operação no mesmo comando utilizando o operador " && " -- exemplo: sudo apt update && sudo apt upgrade
+
 sudo adduser nmDoUsuario -- Adiciona um novo usuário.
+
 sudo login nmDoUsuario -- Loga no usuário desejado.
+
 useradd --help -- Caso não lembre como adicionar um novo usuário ( --help pode ser utilizados em outros comando para verificar como utiliza-los ).
+
 sudo usermod -a -G grupos nmDoUsuario -- Adiciona o usuario em determinado grupo.
+
 sudo apt install htop -- Instala a ferramenta htop para monitorar os recursos utilizados no servidor.
+
 sudo apt install nomeDoPrograma -- Instala o programa desejado.
 
 

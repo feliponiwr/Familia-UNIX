@@ -162,6 +162,22 @@ systemctl reload httpd
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Acesso ao Amniente de Homologação CAVALETTI
+
+1º  Acessar o servidor
+SSH JADE
+
+2º Acessar a pasta de homologação
+cd /var/www/vhosts/cavaletti.soft4.com.br/homologacao
+
+Para resolver o "error 405"  ---> "Oops! An Error OccurredThe server returned a "405 Method Not Allowed".
+
+-- Acessar o servidor, e depois pasta de homologação
+-- Exwcutar o seguinte comando
+php artisan route:clear
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 

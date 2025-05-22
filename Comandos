@@ -204,6 +204,9 @@ Reiniciar o PHP
 
 sudo systemctl restart php83-php-fpm
 
+para identificar o erro
+journalctl -xeu php83-php-fpm.service
+
 
 
 

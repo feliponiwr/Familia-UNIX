@@ -190,7 +190,7 @@ sudo iptables -D INPUT {n}
 
  ssh servidor
 
-sudo vim /etc/httpd/sites-enabled/huvispan.soft4.com.br.conf
+sudo vim /etc/httpd/sites-enabled/CLIENTE.soft4.com.br.conf
 
 ProxyFCGISetEnvIf "true" PHP_ADMIN_VALUE "post_max_size=10M; \n upload_max_filesize = 10M;"
 

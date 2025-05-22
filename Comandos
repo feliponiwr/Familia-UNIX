@@ -213,7 +213,21 @@ journalctl -xeu php83-php-fpm.service
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+Para verificar os serviçoes que estão rodando no servidor utilize o comando:
+
+systemctl list-units --type=service --state=running
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+| Comando                | O que faz                                                               |
+| ---------------------- | ----------------------------------------------------------------------- |
+| `systemctl status`     | Mostra o status geral do sistema (inclui uptime e serviços importantes) |
+| `systemctl`            | Mostra todos os serviços e status (ativos, inativos, falhos etc.)       |
+| `top` ou `htop`        | Mostra processos em tempo real (como o Gerenciador de Tarefas)          |
+| `ps aux`               | Lista todos os processos ativos                                         |
+| `service --status-all` | Lista todos os serviços e seus status (em algumas distros)              |
 
     
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

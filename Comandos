@@ -256,13 +256,137 @@ sudo systemctl restart netdata
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Atualização do SSL enviado pelo cliente
 
 
+1. Acessar o diretório onde estão os certificados baixados:
+cd "C:\Users\user\Downloads\certificado_suporte.edusoft.com.br-2025.05-2026.05"
+
+2. Listar os arquivos presentes na pasta:
+ls
+
+3. Renomear os arquivos do certificado e da chave para indicar o novo período de validade (até 2026):
+mv .\suporte.edusoft.com.br.crt .\suporte.edusoft.com.br-2026.crt
+mv .\suporte.edusoft.com.br.key .\suporte.edusoft.com.br-2026.key
+
+4. Enviar os arquivos para o servidor remoto com o alias "agil", dentro do diretório do site:
+scp suporte* agil:/var/www/vhosts/edusoft.soft4.com.br
+
+5. Conectar-se ao servidor via SSH:
+ssh agil
+
+6. Navegar até o diretório onde os arquivos foram enviados:
+cd /var/www/vhosts/edusoft.soft4.com.br/
+
+7. Mover o novo certificado para o diretório correto dentro da estrutura do Apache:
+mv suporte.edusoft.com.br-2026.crt etc/pki/tls/certs/
+
+8. Mover a nova chave privada para o diretório seguro do Apache:
+mv suporte.edusoft.com.br-2026.key etc/pki/tls/private/
+
+9. Editar o arquivo de configuração do Apache para atualizar os caminhos do certificado e chave:
+sudo vim /etc/httpd/sites-enabled/edusoft.soft4.com.br.conf
+
+10. Testar se a configuração do Apache está correta após a edição:
+sudo apachectl configtest
+
+11. Recarregar o Apache para aplicar as alterações:
+sudo systemctl reload httpd
+
+12. Encerrar a conexão SSH com o servidor:
+exit
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+Desligamento de cliente
 
 
+Bom dia,
 
+O Softdesk SaaS foi removido do servidor.
+
+[Remover a instância da monitoração do mtmon sobre checagem se o Softdesk está online]
+[ssh soft4]
+[vim /usr/local/Multitask/mtmon/etc/mtmon_site_softdesk.conf]
+[ativo=0]
+
+Feita a exclusão dos seguintes itens:
+Subdomínio;
+Virtual Host;
+Crontab;
+Banco de dados;
+Usuário do banco de dados;
+Chat;
+Scripts;
+/etc/opt/remi/php83/php-fpm.d/[instancia].conf
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PASSO A PASSO – REMOÇÃO DO SITE truss.soft4.com.br
+
+1. Conectar ao servidor “soft4” via SSH:
+   Comando: `ssh soft4`
+   Descrição: Estabelece conexão segura com o servidor “soft4”.
+
+2. Editar a configuração do monitoramento no servidor soft4:
+   Comando: `vim /usr/local/Multitask/mtmon/etc/mtmon_site_softdesk.conf`
+   Descrição: Abre o arquivo de configuração do Multitask Monitor para possíveis alterações.
+
+3. Sair do servidor “soft4”:
+   Comando: `exit`
+   Descrição: Finaliza a sessão SSH atual.
+
+4. Conectar ao servidor “nexo” via SSH:
+   Comando: `ssh nexo`
+   Descrição: Estabelece conexão segura com o servidor “nexo”.
+
+5. Editar a configuração das ações:
+   Comando: `sudo vim /usr/local/soft4/etc/acoes.conf`
+   Descrição: Edita arquivo de configuração relacionado às ações da aplicação Soft4.
+
+6. (Opcional) Ver uso de recursos do sistema:
+   Comando: `htop`
+   Descrição: Abre visualizador interativo do uso da CPU, memória e processos em execução.
+
+7. Acessar os arquivos de configuração do Apache:
+   Comando: `cd /etc/httpd/sites-enabled/`
+   Descrição: Entra no diretório onde estão os arquivos de configuração de sites do Apache.
+
+8. Remover o arquivo de configuração do site “truss”:
+   Comando: `sudo rm -f truss.soft4.com.br.conf`
+   Descrição: Apaga o arquivo de configuração do Apache para o site removido.
+
+9. Acessar os arquivos de configuração do PHP-FPM:
+   Comando: `cd /etc/opt/remi/php83/php-fpm.d/`
+   Descrição: Entra no diretório dos pools do PHP-FPM usados pelos sites.
+
+10. Remover o pool do PHP-FPM do site “truss”:
+    Comando: `sudo rm -f truss.conf`
+    Descrição: Apaga o arquivo de pool do PHP usado pelo site “truss”.
+
+11. Validar a configuração do Apache:
+    Comando: `sudo apachectl configtest`
+    Descrição: Verifica se a configuração do Apache está correta após alterações.
+
+12. Recarregar os serviços do Apache e PHP-FPM:
+    Comando: `sudo systemctl reload httpd php83-php-fpm`
+    Descrição: Recarrega os serviços para aplicar as alterações feitas nos arquivos.
+
+13. Acessar o diretório dos arquivos dos sites:
+    Comando: `cd /var/www/vhosts/`
+    Descrição: Entra no diretório onde ficam os arquivos dos sites hospedados.
+
+14. Remover os arquivos do site “truss”:
+    Comando: `sudo rm -rf truss.soft4.com.br/`
+    Descrição: Remove completamente os arquivos do site “truss” do servidor.
+
+15. Sair do servidor “nexo”:
+    Comando: `exit`
+    Descrição: Finaliza a sessão SSH com o servidor “nexo”.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

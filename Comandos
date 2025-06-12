@@ -423,4 +423,32 @@ sudo chmod 775 -R homologacao/ homologacao_v4/ && sudo chown apache:soft4 -R hom
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Problema -- "System TCP SYN queue cookies" --
+
+Para resolver --
+
+Acessar o servidor
+ssh servidor
+
+acessar usuário root
+sudo su -
+
+
+1. Verifique se é ataque ou tráfego legítimo:
+
+netstat -an | grep SYN_RECV | wc -l
+
+2. Aumente o tcp_max_syn_backlog (se for tráfego legítimo):
+Aplicar agora:
+
+sysctl -w net.ipv4.tcp_max_syn_backlog=4096
+
+Tornar permanente (pra manter mesmo depois de reiniciar):
+
+echo "net.ipv4.tcp_max_syn_backlog = 4096" >> /etc/sysctl.conf
+sysctl -p
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 

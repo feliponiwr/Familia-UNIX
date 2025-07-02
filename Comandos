@@ -296,6 +296,26 @@ sudo systemctl reload httpd
 12. Encerrar a conexão SSH com o servidor:
 exit
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Certificado SETRIX
+
+Recebemos um pacote ZIP com vários arquivos referentes ao certificado SSL, porém os arquivos de certificado incluídos não funcionaram corretamente. Apenas o arquivo de chave privada pôde ser utilizado.
+
+Dentro do ZIP havia também um arquivo de e-mail .MSG enviado por no_reply@globalsign.com, com o título:
+"Seu Certificado SSL para *.setrix.com.br foi emitido".
+No corpo desse e-mail constava o certificado digital.
+
+Copiei o conteúdo do e-mail e criei manualmente o certificado no servidor. Somente dessa forma foi possível concluir a atualização do certificado com sucesso.
+
+A configuração final ficou da seguinte maneira:
+
+SSLCertificateFile /var/www/vhosts/setrix.soft4.com.br/etc/pki/tls/certs/certificate-email-2025.crt
+→ (conteúdo copiado do e-mail "Seu Certificado SSL para *.setrix.com.br foi emitido.msg")
+
+SSLCertificateKeyFile /var/www/vhosts/setrix.soft4.com.br/etc/pki/tls/private/private-2025.key
+→ (arquivo renomeado originalmente de "Private Key.txt")
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -404,6 +424,7 @@ PARA ACESSAR O AMBIENTE
 ssh -i C:\Users\user\.ssh\id_rsa soft4@172.16.0.3
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Copia a prodrução
 
 mysqldump -usaas_mainhardt  -p --add-drop-table saas_mainhardt  | gzip > saas_mainhardt_202505150950.sql.gz
@@ -473,6 +494,14 @@ Login: ter.wellington.f
 Senha: ictM]0+931_7
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 

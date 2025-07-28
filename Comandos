@@ -510,7 +510,18 @@ ls
 cat unilnxpro*.202*0707.Acessos.Horizontal.json
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+HABILITAR O AMBIENTE DE HOMOLOGAÇÃO DO CLIENTE
 
+1º Acessar o servidor onde o cliente está
+ssh servidor
+
+2º Acessar o caminho do ambiente de homologação
+/var/www/vhosts/CLIENTE.soft4.com.br/homologacao/
+
+3º Rodar o seguinte comando
+sudo php artisan route:clear
+
+4º Testar o acesso ao ambiente de homologação.
 
 
 

@@ -436,7 +436,7 @@ gunzip < saas_mainhardt_202505150950.sql.gz | mysql -usaas_mainhardt  -p saas_ma
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-sudo chmod 775 -R softdesk/ softdesk_v4/ homologacao/ homologacao_v4/ && sudo chown apache:soft4 -R softdesk/ softdesk_v4/ homologacao/ homologacao_v4/
+sudo chmod 775 -R softdesk/ softdesk_v4/ homologacao/ homologacao_v4/ && sudo chown apache:soft4 -R softdesk/ softdesk_v4/ homologacao/ homologacao_v4/ && sudo php artisan cache:clear && cd ../ && sudo chown 775 -R softdesk*/ && sudo chown apache:soft4 -R softdesk*/
 
 sudo chmod 775 -R softdesk/ softdesk_v4/ && sudo chown apache:soft4 -R softdesk/ softdesk_v4/
 

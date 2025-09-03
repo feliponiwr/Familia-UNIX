@@ -548,6 +548,46 @@ sudo systemctl reload httpd
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Para adicionar módulos 
 
+Acessar o ambiente PHP MyAdmin
+
+#https://servidor.soft4.com.br/phpmyadmin
+
+Selecione o cliente
+
+#saas_cliente
+
+Selecione o módulo
+
+#adm_config
+
+Adicione um dos módulos da lista, e salve
+
+    'chamado'        => 1,
+    'problema'       => 2,
+    'mudanca'        => 3,
+    'configuracao'   => 4,
+    'administracao'  => 5,
+    'administrador'  => 6,
+    'informacao'     => 8,
+    'projeto'        => 9,
+    'relacionamento' => 10,
+    'cobranca'       => 11,
+    'contrato'       => 12,
+
+
+Acesse o servidor
+# ssh servidor
+
+E depois acesse a instacia e o diretório onde foi liberado.
+
+#cd /var/www/vhosts/cliente.soft4.com.br/sotdesk ou /homologacao
+
+e rodar o comando 
+
+# php artisan adm:atualizar
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

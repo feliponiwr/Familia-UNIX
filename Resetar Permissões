@@ -1,0 +1,12 @@
+Permisão individual
+
+    # sudo chmod 775 -R softdesk/ softdesk_v4/ && sudo chown apache:soft4 -R softdesk/ softdesk_v4/
+
+    # sudo chmod 775 -R homologacao/ homologacao_v4/ && sudo chown apache:soft4 -R homologacao/ homologacao_v4/
+
+
+Permissões juntas
+    # sudo chmod 775 -R softdesk/ softdesk_v4/ homologacao/ homologacao_v4/ && sudo chown apache:soft4 -R softdesk/ softdesk_v4/ homologacao/ homologacao_v4/ && sudo php artisan cache:clear && cd ../ && sudo chown 775 -R softdesk*/ && sudo chown apache:soft4 -R softdesk*/
+
+Se der na limpeza do cache na atualização, acessar o ambiente e usar o comando
+    # sudo php artisan cache:clear && cd ../ && sudo chown 775 -R softdesk*/ && sudo chown apache:soft4 -R softdesk*/

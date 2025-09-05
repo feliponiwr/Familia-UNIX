@@ -1,0 +1,11 @@
+Acessar o servidor
+
+    # ssh servidor
+
+    # sudo vim /etc/httpd/sites-enabled/CLIENTE.soft4.com.br.conf
+
+    # ProxyFCGISetEnvIf "true" PHP_ADMIN_VALUE "post_max_size=10M; \n upload_max_filesize = 10M;"
+
+    # sudo apachectl configtest
+
+    # sudo systemctl reload httpd

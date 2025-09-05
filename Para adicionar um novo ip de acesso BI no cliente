@@ -1,0 +1,38 @@
+1º Acessar o phpMyAdmin do servidor, utilizar root e senha
+
+https://servidor.soft4.com.br/phpmyadmin/index.php?route=/server/privileges&viewing_mode=server
+
+2º Acessar Contas de usuário e procurar o bi do cliente
+    # bi_cliente
+	
+	
+3º Selecionar caixnha e clicar em exportar
+
+4º Copiar as informações do popup
+
+5º Vá até a aba SQL, cole e altere o ip para o novo ifnromado.
+
+    # GRANT USAGE ON *.* TO `bi_cliente`@`xxx.xxx.x.x` IDENTIFIED BY PASSWORD '*A senha já vai estar aqui';
+
+    # GRANT SELECT ON `saas_cliente`.* TO `bi_cliente`@`xxx.xxx.x.x`;
+
+
+6º Acessar o ambiente do dc/VMcloud, e adicionar os ip's no conjunto de ip do servidor onde esta o cliente
+
+    # Rede ---> Edges ---> 127858_SOFT4_GW_T1 ---> Segurança ---> Conjuntos de IP's
+
+7º Selecionar o cliente, editar e adicionar o novo ip
+
+8º Adiconar os ip's no servidor 
+
+    # ssh servidor
+    # sudo vim /usr/local/soft4/etc/softdesk.iptables.conf
+    # :wq
+
+9º Ou para adicionar manualmente
+
+    # sudo /usr/sbin/iptables-nft -I INPUT -s 999.999.999.999 -j ACCEPT -p tcp --dport 3306 -m comment --comment "Cliente: soft4"
+
+10] -- Listar regras IPTABLES
+
+    # sudo iptables -L INPUT -n --line-numbers

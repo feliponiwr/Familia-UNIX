@@ -1,0 +1,6 @@
+
+Copia a prodrução
+    # mysqldump -usaas_cliente  -p --add-drop-table saas_cliente  | gzip > saas_cliente_2025xxxx.sql.gz
+
+Restaurar na homoloção
+    # gunzip < saas_cliente_2025xxxx.sql.gz | mysql -usaas_cliente -p saas_cliente_homologacao

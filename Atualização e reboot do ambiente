@@ -1,0 +1,8 @@
+1) Alterar o usuário para o root
+2) Atualizar tudo o que for necessário
+3) Reiniciar o servidor
+4) Esperar o servidor subir e entrar em alguns clientes hospedados neste servidor.
+
+    # sudo su -
+    # yum update -y
+    # shutdown -r 0

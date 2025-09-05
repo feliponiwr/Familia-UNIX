@@ -1,0 +1,40 @@
+----------------------------------------------------------------------------------------------------
+
+Para adicionar módulos 
+
+1º Acessar o ambiente PHP MyAdmin
+
+    # https://servidor.soft4.com.br/phpmyadmin
+
+2º Selecione o cliente
+
+   # saas_cliente
+
+3º Selecione o módulo
+
+    #adm_config
+
+4º Adicione um dos módulos da lista, e salve
+
+    'chamado'        => 1,
+    'problema'       => 2,
+    'mudanca'        => 3,
+    'configuracao'   => 4,
+    'administracao'  => 5,
+    'administrador'  => 6,
+    'informacao'     => 8,
+    'projeto'        => 9,
+    'relacionamento' => 10,
+    'cobranca'       => 11,
+    'contrato'       => 12,
+
+
+5º Acesse o servidor
+    # ssh servidor
+
+6º Acesse a instacia e o diretório onde foi liberado.
+
+    #cd /var/www/vhosts/cliente.soft4.com.br/sotdesk ou /homologacao 
+    # php artisan adm:atualizar
+
+----------------------------------------------------------------------------------------------------

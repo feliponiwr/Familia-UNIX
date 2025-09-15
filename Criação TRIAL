@@ -1,0 +1,159 @@
+Criar um Trial
+
+1º Criar o dominio do cliente do Google Cloud
+  # Cloud DNS 
+	# ADD Padrão 
+	# Nome do DNS (Nome do Cliente)
+	# Tipo de registro (cname)
+	# TTL --> 1 HORA
+	# Nome canonico (servidordestino.sotf4.com.br)
+	
+2º Rodar o script "deploy-instalacao"
+
+Passo a passo explicando:
+
+Executar o script
+
+  # ./deploy.sh
+
+
+3º Ele vai te perguntar algumas coisas no terminal.
+
+  # Nome do cliente
+
+4º Quando pedir Nome do cliente SaaS, você deve digitar:
+
+  # CLIENTE
+
+
+  *Isso serve para buscar o ID do cliente no sistema da Soft4.*
+
+5º Selecionar cliente na lista
+
+  #  O script mostra os clientes encontrados.
+
+   # Como só vai aparecer CLIENTE, ele já seleciona o ID automaticamente.
+
+    # Se aparecer mais de um, você escolhe o número correspondente.
+
+6º Tipo de instalação
+
+  # Vai perguntar: Instalação inclui ambiente de homologação? (y/n)
+
+   # Se sim, digite y (instala duas instâncias: produção + homologação).
+
+    # Se não, digite n (instala só produção).
+
+Geralmente SaaS cliente → escolha n (trial/produção apenas).
+
+7º Token do Git
+
+  # Ele tenta ler de ~/.ssh/git_access_token.
+
+*Se não existir, vai pedir para digitar o token de acesso ao GitHub da Soft4.*
+
+Digite o token e ele será salvo.
+
+8º Nome do servidor
+
+  # Pergunta: Informe nome do servidor destino
+
+   # Você deve digitar beta, belo, tera ou nexo (dependendo de onde o CLIENTE vai ficar).
+
+    # Exemplo:
+
+    # belo
+
+
+9º Download e preparação do sistema
+
+  # O script baixa as últimas versões do Softdesk v4 e v5 do GitHub.
+
+  # Cria a estrutura de pastas para o cliente CLIENTE.soft4.com.br.
+
+  # Gera arquivos de configuração do Apache (CLIENTE.soft4.com.br.conf).
+
+  # Prepara script de links simbólicos (criar-link-simbolico.sh).
+
+10º Gera SQL para criar usuário e banco saas_CLIENTE.
+
+  # Banco de dados
+
+  # Ele cria:
+
+  # Usuário: saas_CLIENTE
+
+  # Banco: saas_CLIENTE
+
+  # Banco de homologação: saas_CLIENTE_homologacao (se for instalação completa).
+
+  # Senha é gerada automaticamente (aparece no final).
+
+11º Pacote final
+
+  # Ele gera um .tar.gz dentro da pasta historico/.
+
+   # Exemplo:
+
+   # historico/CLIENTE.soft4.com.br.tar.gz
+
+
+12º Etapas manuais no servidor
+
+O próprio script imprime no final os comandos que você deve rodar, por exemplo:
+
+  # Transferir pacote:
+
+   # scp historico/CLIENTE.soft4.com.br.tar.gz soft4@belo:/var/www/vhosts
+
+
+13º Acessar o servidor:
+
+  # ssh soft4@belo -p 7223
+
+
+Descompactar:
+
+cd /var/www/vhosts && tar -zxf CLIENTE.soft4.com.br.tar.gz
+
+
+14º Criar bancos e importar:
+
+  # mysql -uroot -p < CLIENTE.soft4.com.br.sql && gunzip < saas_saas.sql.gz | mysql -usaas_CLIENTE -p'XXXX' saas_CLIENTE
+
+
+15º Mover arquivos de configuração e recarregar Apache:
+
+  # sudo mv CLIENTE.soft4.com.br.conf /etc/httpd/sites-enabled/
+  # sudo systemctl reload httpd && sudo systemctl restart php83-php-fpm netdata
+
+
+16º Criar links simbólicos:
+
+  # bash criar-link-simbolico.sh
+
+
+17º Instalar dependências Laravel:
+
+  # cd softdesk && composer install --no-dev && php artisan key:generate && php artisan migrate --force
+
+
+18º Documentação final
+
+  # Ele gera um documentacao.html com todos os acessos:
+
+   # URL do sistema
+
+    # Usuário/Senha inicial
+
+     # Banco de dados
+
+      # Configuração Apache
+
+       # phpMyAdmin
+
+Você deve copiar isso para o dossiê do cliente no Softdesk da Soft4.
+
+
+
+--------------------------------------------------------------------------------------------------------------------------

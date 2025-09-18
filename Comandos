@@ -99,3 +99,14 @@ Isso vai mover os dados da swap de volta para a RAM (se houver espaço livre).
 Ativa novamente:
 swapon -a
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Para mudar o host do Windows
+ # Abrir o cloco de notas como administrador
+  # Arquivo --> Abrir --> e colar o caminho C:\Windows\System32\drivers\etc\hosts
+   # Acessar o arquivo host, adiconar o ip e o endereço https --> cliente.soft4.com.br
+    # Depois dar o comando --> ipconfig /flushdns
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

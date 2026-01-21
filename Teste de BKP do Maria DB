@@ -1,0 +1,56 @@
+1º Acessar o servidor do Repositório
+
+  # SSH BETA ---> SSH REPO
+
+*O servidor de repositório só é acessivel estilo jumpserver*
+
+2º Ir até o caminho
+
+  # cd /dados/BackupMariaDB/SC/
+
+3º Depois disso você escolher um dos dias que existem os bkps
+
+# 0 --> Domingo
+ # 1 --> Segunda
+  # 2 --> Terça
+   # 3 --> Quarta
+    # 4 --> Quinta
+     # 5 --> Sexta
+      # 6 --> Sabádo
+
+4º Depois disso escola entre os servidores
+
+# unilnxpro {1....23}
+
+5º Depois transferir os dois Bkps para o servidor "beta:/usr/local/soft4/tmpz"
+
+  # .data.dump.gz
+  # .data.struc.gz
+
+# scp .data.dump.gz .data.dump.gz root@beta:/usr/local/soft4/tmpz
+
+6º Depois disso baixar os dois arquivos no seu computador
+
+  # scp root@beta:/usr/local/soft4/tmpz/.data.dump.gz
+
+  # scp root@beta:/usr/local/soft4/tmpz/.data.struc.gz
+
+
+{ PARA TESTAR O BKP }
+
+a) Abrir o DBeaver
+
+ b) Conectar ao db local
+
+  c) Selecionar o databse de teste_BACKUP
+
+   d) Clicar com o botão diretito e selecionar FERRAMENTAS --> RESTAURAR DB
+
+    e) Selecionar o arquivo struc
+
+        *Esperar finalizar*
+
+       f) Selecionar o arquivo dump
+
+
+

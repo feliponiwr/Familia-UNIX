@@ -41,7 +41,9 @@ destino:SERVIDOR
 data:20250812
 
 -- Exportar usuário e banco de dados do servidor origem e depois importar no servidor destino
+
 -- Esses dados devem obtidos no phpMyAdmin do servidor origem e depois importados no phpMyAdmin do servidor origem
+
 CREATE DATABASE IF NOT EXISTS `saas_CLIENTE` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS `saas_CLIENTE_homologacao` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

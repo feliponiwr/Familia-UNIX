@@ -18,10 +18,10 @@
     # cd /var/www/vhosts/edusoft.soft4.com.br/
 
 7. Mover o novo certificado para o diretório correto dentro da estrutura do Apache:
-    # mv suporte.edusoft.com.br-2026.crt etc/pki/tls/certs/
+    # mv suporte.edusoft.com.br-2026.crt /var/www/cliente.soft4.com.br/etc/pki/tls/certs/
 
 8. Mover a nova chave privada para o diretório seguro do Apache:
-    # mv suporte.edusoft.com.br-2026.key etc/pki/tls/private/
+    # mv suporte.edusoft.com.br-2026.key /var/www/cliente.soft4.com.br/etc/pki/tls/private/
 
 9. Editar o arquivo de configuração do Apache para atualizar os caminhos do certificado e chave:
     # sudo vim /etc/httpd/sites-enabled/edusoft.soft4.com.br.conf

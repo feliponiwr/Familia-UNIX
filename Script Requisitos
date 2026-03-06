@@ -1,0 +1,80 @@
+# 1. Criar e abrir o arquivo com o editor de sua preferência
+vim validar_softdesk.sh
+
+# 2. Após salvar (:wq), dê a permissão
+chmod +x validar_softdesk.sh
+
+# 3. Execute como root
+./validar_softdesk.sh
+
+
+=================================================================================================================================
+
+#!/bin/bash
+
+# --- CHECKLIST SOFTDESK V5 (REDO PARA RHEL/ORACLE/ROCKY) ---
+echo "Iniciando validacao para sistemas RHEL-based..."
+
+# Função para instalar pacotes via DNF
+instalar_pacote() {
+    PAC_NOME=$1
+    if ! rpm -q "$PAC_NOME" > /dev/null 2>&1; then
+        echo -e "\e[31m[FALTANDO]\e[0m $PAC_NOME"
+        read -p "Deseja instalar $PAC_NOME agora? (s/n): " resp
+        if [[ $resp == "s" ]]; then
+            dnf install -y "$PAC_NOME"
+        fi
+    else
+        echo -e "\e[32m[OK]\e[0m $PAC_NOME já instalado."
+    fi
+}
+
+# 1. SOFTWARES BÁSICOS (Apache no RHEL é httpd) [cite: 13, 41, 50]
+PACOTES=("unzip" "httpd" "mariadb-server" "composer")
+for p in "${PACOTES[@]}"; do instalar_pacote $p; done
+
+# 2. MÓDULOS PHP 8.3 [cite: 17, 20-31]
+# Nota: Pode ser necessário habilitar o repositório REMI para PHP 8.3 no RHEL
+MODULOS_PHP=("php" "php-bcmath" "php-curl" "php-gd" "php-imap" "php-intl" "php-ldap" "php-mbstring" "php-mysqlnd" "php-soap" "php-xml" "php-zip")
+echo "Verificando extensoes PHP..."
+for m in "${MODULOS_PHP[@]}"; do instalar_pacote $m; done
+
+# 3. CONFIGURAÇÕES PHP.INI [cite: 35, 36, 38, 39, 40]
+# No RHEL, o arquivo costuma ficar em /etc/php.ini
+PHP_INI="/etc/php.ini"
+if [ -f "$PHP_INI" ]; then
+    echo "Ajustando variaveis do PHP em $PHP_INI..."
+    sed -i "s/^allow_url_fopen =.*/allow_url_fopen = On/" $PHP_INI
+    sed -i "s/^memory_limit =.*/memory_limit = 3G/" $PHP_INI
+    sed -i "s/^max_execution_time =.*/max_execution_time = 120/" $PHP_INI
+    sed -i "s/^max_input_time =.*/max_input_time = 120/" $PHP_INI
+    
+    if grep -q "max_input_vars" $PHP_INI; then
+        sed -i "s/^max_input_vars =.*/max_input_vars = 1000000/" $PHP_INI
+    else
+        echo "max_input_vars = 1000000" >> $PHP_INI
+    fi
+    systemctl restart httpd
+    echo -e "\e[32m[OK]\e[0m PHP configurado."
+fi
+
+# 4. MARIADB E ENGINE INNODB [cite: 42, 43, 46]
+echo "Configurando MariaDB..."
+MYSQL_CONF="/etc/my.cnf.d/mariadb-server.cnf"
+if [ -f "$MYSQL_CONF" ]; then
+    # Desabilitar Strict Mode conforme requisito [cite: 46]
+    if ! grep -q "sql_mode" $MYSQL_CONF; then
+        sed -i "/\[mysqld\]/a sql_mode=\"\"\nmax_allowed_packet=10M" $MYSQL_CONF
+    fi
+    systemctl enable mariadb
+    systemctl restart mariadb
+    echo -e "\e[32m[OK]\e[0m MariaDB configurado e ativo."
+fi
+
+# 5. MÓDULOS APACHE (No RHEL já costumam vir carregados, mas garantimos o restart) [cite: 15, 16]
+systemctl enable httpd
+systemctl restart httpd
+
+echo "--- Validacao Concluida ---"
+
+=================================================================================================================================

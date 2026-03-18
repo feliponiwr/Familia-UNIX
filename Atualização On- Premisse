@@ -1,0 +1,128 @@
+✅ Manual: Envio e Remoção de Arquivos no Servidor via SCP e SSH
+
+1. Preparar os arquivos para envio
+
+Certifique-se de que os arquivos que deseja enviar estão na pasta local correta.
+
+
+No exemplo, os arquivos estavam em:
+
+# /mnt/c/Users/user/Downloads
+
+  # Arquivos:
+
+   # softdesk.zip && softdesk_v4.zip
+
+
+
+
+2. Enviar os arquivos para o servidor
+
+Use o comando SCP para copiar arquivos do seu computador para o servidor remoto.
+
+
+No exemplo, foi usado:
+
+# scp softdesk*.zip rubi:/var/www/vhosts/softdesk.soft4.com.br/softdesk/public
+
+Explicação:
+
+
+scp → comando para copiar arquivos via SSH.
+
+
+softdesk*.zip → copia todos os arquivos que começam com softdesk e terminam com .zip.
+
+
+rubi → nome do host/servidor (configurado no SSH).
+
+
+/var/www/vhosts/softdesk.soft4.com.br/softdesk/public → diretório de destino no servidor.
+
+
+✅ Após executar, você verá a barra de progresso indicando que os arquivos foram transferidos:
+
+softdesk.zip      100% 21MB 10.0MB/s 00:02
+softdesk_v4.zip   100% 39MB 10.5MB/s 00:03
+
+
+
+3. Conectar ao servidor via SSH
+
+Use o comando:
+# ssh rubi
+
+Explicação:
+
+
+ssh → acessa o servidor remoto via terminal seguro.
+
+
+rubi → host configurado no SSH (pode ser substituído pelo IP ou domínio).
+
+
+✅ Ao conectar, aparecerá a mensagem de login e informações do servidor.
+
+
+
+4. Acessar o diretório de destino
+
+Vá até a pasta onde os arquivos foram enviados:
+
+# cd /var/www/vhosts/softdesk.soft4.com.br/softdesk/public
+
+5. Listar os arquivos existentes
+
+Para verificar os arquivos dentro da pasta, use:
+# ls
+ou para exibir detalhes:
+# ll
+
+✅ Você verá que os arquivos softdesk.zip e softdesk_v4.zip estão no diretório.
+
+
+
+6. Remover os arquivos enviados (Após a atualização)
+
+Caso precise deletar os arquivos do servidor, use:
+
+# rm softdesk_v4.zip softdesk.zip
+
+Explicação:
+
+
+rm → comando para remover arquivos.
+
+
+Lista os arquivos que serão apagados.
+
+
+
+
+7. Confirmar a remoção
+
+Liste novamente os arquivos para confirmar:
+ll
+
+✅ Os arquivos .zip não devem mais aparecer na listagem.
+
+
+
+8. Encerrar a sessão SSH
+
+Para sair do servidor, use:
+exit
+
+✅ A conexão será fechada e você voltará ao terminal local.
+
+
+Resumo das Ações Executadas
+✔ Transferiu dois arquivos ZIP do computador local para o servidor rubi usando scp.
+
+✔ Acessou o servidor via SSH.
+
+✔ Conferiu os arquivos no diretório /var/www/vhosts/softdesk.soft4.com.br/softdesk/public.
+
+✔ Removeu os arquivos enviados usando rm.
+
+✔ Saiu do servidor com exit.

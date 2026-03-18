@@ -65,8 +65,52 @@ a) Abrir o DBeaver
 
 OBS.: Ambos os processo podem demorar muito, então inicie, deixe o programa aberto, e siga com suas demandas.
 
+========================================================================================================================================================================================
+
+Agora para testar se o arquivos está funcionando corretamente
+
+1. Conectar e Localizar os Bancos
+
+ # Ao abrir o DBeaver, no lado esquerdo (Navegador de Banco de Dados), você localizou a conexão localhost.
+
+  # Você clicou na seta ao lado de Bancos de dados para listar os schemas que importou (saas_gestao, saas_grupomassa, saas_hering).
+
+2. Abrir o Editor de Comandos (A "Folha de Rascunho")
+
+# Para escrever as ordens para o banco, você precisou de um editor:
+
+  # Você clicou com o botão direito na conexão localhost.
+
+   # Escolheu Editor SQL -> Novo Editor SQL (ou usou o atalho F3).
+
+    # Isso abriu a aba preta no centro, onde o cursor fica piscando.
+
+3. Escolher o Banco "Alvo" (Muito Importante!)
+
+# Para o DBeaver não se perder entre os três bancos, você definiu qual testar:
+
+ # No topo da tela, você clicou no seletor de esquema (perto de um ícone de banco azul) e trocou de < N/A > para o banco desejado (ex: saas_hering).
+
+4. Escrever e Rodar o Comando
+
+# Na área preta do editor, você digitou o comando padrão para "espiar" os dados:
+
+# SQL
+ # SELECT * FROM nome_da_tabela LIMIT 10;
+  # SELECT *: "Me mostre todas as colunas".
+
+    # FROM sd_area: "Busque na tabela de áreas/setores".
+
+LIMIT 10: "Traga só os 10 primeiros" (para não travar o PC com bancos grandes como o de 13GB da Hering).
+
+5. Executar e Ver o Resultado
+
+# Com o cursor na linha do comando, você apertou CTRL + ENTER (ou clicou na seta laranja/Play na lateral esquerda do editor).
+
+# Os dados apareceram logo abaixo, na Grade de Resultados.
 
 
+========================================================================================================================================================================================
 
 
 

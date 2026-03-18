@@ -13,7 +13,11 @@ No exemplo, os arquivos estavam em:
 
    # softdesk.zip && softdesk_v4.zip
 
+Caso seja um novo cliente também será necessário enviar os arquivos de atualização de ambeinte
 
+# Arquivios
+
+  # atualiza_homologacao.sh  &&  atualiza_producao.sh
 
 
 2. Enviar os arquivos para o servidor
@@ -24,6 +28,8 @@ Use o comando SCP para copiar arquivos do seu computador para o servidor remoto.
 No exemplo, foi usado:
 
 # scp softdesk*.zip rubi:/var/www/vhosts/softdesk.soft4.com.br/softdesk/public
+
+# scp atualiza*.zip rubi:/var/www/vhosts/softdesk.soft4.com.br/softdesk/public
 
 Explicação:
 

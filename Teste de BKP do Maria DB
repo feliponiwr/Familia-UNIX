@@ -29,11 +29,19 @@
 
 # scp .data.dump.gz .data.dump.gz root@beta:/usr/local/soft4/tmpz
 
-6º Depois disso baixar os dois arquivos no seu computador
+6º Depois disso baixar os dois arquivos no seu computador, abra o oainel linux direto na pasta que você vai baixar os arquivos;
 
-  # scp root@beta:/usr/local/soft4/tmpz/.data.dump.gz
+  # scp root@beta:/usr/local/soft4/tmpz/saas_cliente.data.dump.gz
 
-  # scp root@beta:/usr/local/soft4/tmpz/.data.struc.gz
+  # scp root@beta:/usr/local/soft4/tmpz/saas_cliente.data.struc.gz
+
+|=================================================================================================================================|
+|                                                                                                                                 |
+|                                     Para baixar todos os arquivos da pasta utilize                                              |
+|                                                                                                                                 |
+|                                  scp -r root@beta:/usr/local/soft4/tmpz/* .                                                     |
+|                                                                                                                                 |
+|=================================================================================================================================|
 
   ** Antes de Comexar o teste descompacte as duas pastas uzando .7zip ou o .winzip **
 
@@ -52,6 +60,14 @@ a) Abrir o DBeaver
         *Esperar finalizar*
 
        f) Selecionar o arquivo dump
+
+            *Esperar finalizar*
+
+OBS.: Ambos os processo podem demorar muito, então inicie, deixe o programa aberto, e siga com suas demandas.
+
+
+
+
 
 
 

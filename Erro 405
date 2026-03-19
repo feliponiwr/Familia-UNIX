@@ -1,0 +1,52 @@
+1. Verifique as permissões de escrita e o .htaccess
+
+**Certifique-se de que o diretório de homologação possui o arquivo .htaccess correto e que o Apache tem permissão para lê-lo.**
+
+ # ls -la /var/www/vhosts/acensco.soft4.com.br/homologacao/public/.htaccess
+
+**(Se for uma instalação Laravel, o .htaccess deve estar dentro da pasta public e o Apache deve apontar para lá).**
+
+2. Verifique a configuração do Apache (Virtual Host)
+
+**O erro pode ocorrer se o Apache estiver bloqueando métodos HTTP ou se a instrução AllowOverride não estiver habilitada, impedindo que o .htaccess da aplicação funcione.**
+
+Abra o arquivo de configuração:
+
+
+ # vim /etc/httpd/sites-enabled/acensco.soft4.com.br.conf
+
+**Verifique se a seção referente à homologação permite a sobrescrita de diretivas**
+
+Apache
+<Directory "/var/www/vhosts/acensco.soft4.com.br/homologacao">
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+
+3. Limpeza de Cache da Aplicação (Laravel)
+
+*Se a aplicação usa o comando artisan, o cache de rotas pode estar corrompido ou desatualizado para o ambiente de homologação.**
+
+Acesse o diretório e execute:
+
+
+# cd /var/www/vhosts/acensco.soft4.com.br/homologacao/ && /usr/bin/php83 artisan route:clear && /usr/bin/php83 artisan cache:clear && /usr/bin/php83 artisan config:clear
+
+4. Se o problema persistir, verifique os Logs de Erro
+
+**Para ver o motivo exato do bloqueio pelo Apache, verifique o log de erro do servidor**
+
+
+tail -f /var/log/httpd/error_log
+
+**(Ou o caminho do log específico definido no seu Virtual Host).**
+
+5. Reinicie o Apache e o PHP-FPM
+
+**Após qualquer alteração nos arquivos de configuração do sistema**
+
+ # systemctl restart httpd
+  # systemctl restart php-fpm
+

@@ -1,0 +1,59 @@
+Para atualizar o certificado do endereço de *soft4.com.br
+
+**Baixar os  arquivos enviados no chamado**
+
+**Renomear se for necessário**
+
+Enviar os arquivos para uma pasta dentro do servidor.
+
+Exemplo;
+
+# scp soft4.com.br.crt root@beta:/usr/local/soft4/tmpz/
+
+ # scp soft4.com.br.ca-bundle root@beta:/usr/local/soft4/tmpz/
+
+  # scp soft4.com.br.key root@beta:/usr/local/soft4/tmpz/
+
+
+No servidor
+
+# sudo vim /etc/httpd/conf.d/ssl.conf
+
+Encotrar as linahs
+
+# SSLCertificateFile /etc/pki/tls/certs/soft4.com.br.crt
+ # SSLCertificateKeyFile /etc/pki/tls/private/soft4.com.br.key
+  # SSLCACertificateFile /etc/pki/tls/certs/soft4.com.br.ca-bundle
+
+Copiar as linhas,e ajustar para o caminho de teste com o nome "novo"
+
+# SSLCertificateFile /usr/local/soft4/tmpz/soft4.com.br.crt
+ # SSLCertificateKeyFile /usr/local/soft4/tmpz/soft4.com.br.key
+  # SSLCACertificateFile /usr/local/soft4/tmpz/soft4.com.br.ca-bundle
+
+
+Testar se a configuração do Apache está correta após a edição:
+    # sudo apachectl configtest
+
+Recarregar o Apache para aplicar as alterações:
+    # sudo systemctl reload httpd
+
+Verificar se o certificado foi atualizado, após isso, enviar os arquivos para o caminho correto
+
+# /etc/pki/tls/certs/
+
+ # /etc/pki/tls/private/
+
+
+Ajustar as linhas para o "novo nome" do arquivos, e excluir as linhas de teste.
+
+
+Testar se a configuração do Apache está correta após a edição:
+    # sudo apachectl configtest
+
+Recarregar o Apache para aplicar as alterações:
+    # sudo systemctl reload httpd
+
+
+Valide novamente se o certificado continua atualizado, se continuar atualizado, exclua os arquvis antigos.
+

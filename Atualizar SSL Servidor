@@ -19,6 +19,10 @@ No servidor
 
 # sudo vim /etc/httpd/conf.d/ssl.conf
 
+ ** Realizar o mesmo processo no caminho**
+
+   # sudo vim /etc/httpd/conf/httpd.conf
+
 Encotrar as linahs
 
 # SSLCertificateFile /etc/pki/tls/certs/soft4.com.br.crt

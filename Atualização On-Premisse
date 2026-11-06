@@ -11,7 +11,7 @@ No exemplo, os arquivos estavam em:
 
   # Arquivos:
 
-   # softdesk.zip && softdesk_v4.zip
+   # servico.zip && servico_v4.zip
 
 Caso seja um novo cliente também será necessário enviar os arquivos de atualização de ambeinte
 
@@ -27,9 +27,9 @@ Use o comando SCP para copiar arquivos do seu computador para o servidor remoto.
 
 No exemplo, foi usado:
 
-# scp softdesk*.zip rubi:/var/www/vhosts/softdesk.soft4.com.br/softdesk/public
+# scp servico*.zip rubi:/var/www/vhosts/servico.dominio.com.br/servico/public
 
-# scp atualiza*.zip rubi:/var/www/vhosts/softdesk.soft4.com.br/softdesk/public
+# scp atualiza*.zip rubi:/var/www/vhosts/servico.dominio.com.br/servico/public
 
 Explicação:
 
@@ -37,19 +37,19 @@ Explicação:
 scp → comando para copiar arquivos via SSH.
 
 
-softdesk*.zip → copia todos os arquivos que começam com softdesk e terminam com .zip.
+servico*.zip → copia todos os arquivos que começam com servico e terminam com .zip.
 
 
 rubi → nome do host/servidor (configurado no SSH).
 
 
-/var/www/vhosts/softdesk.soft4.com.br/softdesk/public → diretório de destino no servidor.
+/var/www/vhosts/servico.dominio.com.br/servico/public → diretório de destino no servidor.
 
 
 ✅ Após executar, você verá a barra de progresso indicando que os arquivos foram transferidos:
 
-softdesk.zip      100% 21MB 10.0MB/s 00:02
-softdesk_v4.zip   100% 39MB 10.5MB/s 00:03
+servico.zip      100% 21MB 10.0MB/s 00:02
+servico_v4.zip   100% 39MB 10.5MB/s 00:03
 
 
 
@@ -75,7 +75,7 @@ rubi → host configurado no SSH (pode ser substituído pelo IP ou domínio).
 
 Vá até a pasta onde os arquivos foram enviados:
 
-# cd /var/www/vhosts/softdesk.soft4.com.br/softdesk/public
+# cd /var/www/vhosts/servico.dominio.com.br/servico/public
 
 5. Listar os arquivos existentes
 
@@ -84,7 +84,7 @@ Para verificar os arquivos dentro da pasta, use:
 ou para exibir detalhes:
 # ll
 
-✅ Você verá que os arquivos softdesk.zip e softdesk_v4.zip estão no diretório.
+✅ Você verá que os arquivos servico.zip e servico_v4.zip estão no diretório.
 
 
 
@@ -92,7 +92,7 @@ ou para exibir detalhes:
 
 Caso precise deletar os arquivos do servidor, use:
 
-# rm softdesk_v4.zip softdesk.zip
+# rm servico_v4.zip servico.zip
 
 Explicação:
 
@@ -127,7 +127,7 @@ Resumo das Ações Executadas
 
 ✔ Acessou o servidor via SSH.
 
-✔ Conferiu os arquivos no diretório /var/www/vhosts/softdesk.soft4.com.br/softdesk/public.
+✔ Conferiu os arquivos no diretório /var/www/vhosts/servico.dominio.com.br/servico/public.
 
 ✔ Removeu os arquivos enviados usando rm.
 

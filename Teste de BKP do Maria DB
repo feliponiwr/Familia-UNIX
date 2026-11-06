@@ -1,6 +1,6 @@
 1º Acessar o servidor do Repositório
 
-  # SSH BETA ---> SSH REPO
+  # SSH BETA ---> SSH SRV
 
 *O servidor de repositório só é acessivel estilo jumpserver*
 
@@ -18,28 +18,28 @@
      # 5 --> Sexta
       # 6 --> Sabádo
 
-4º Depois disso escola entre os servidores
+4º Depois disso escolHa entre os servidores
 
 # unilnxpro {1....23}
 
-5º Depois transferir os dois Bkps para o servidor "beta:/usr/local/soft4/tmpz"
+5º Depois transferir os dois Bkps para o servidor "SRV:/usr/local/cliente/tmpz"
 
   # .data.dump.gz
   # .data.struc.gz
 
-# scp .data.dump.gz .data.dump.gz root@beta:/usr/local/soft4/tmpz
+# scp .data.dump.gz .data.dump.gz root@SRV:/usr/local/cliente/tmpz
 
 6º Depois disso baixar os dois arquivos no seu computador, abra o oainel linux direto na pasta que você vai baixar os arquivos;
 
-  # scp root@beta:/usr/local/soft4/tmpz/saas_cliente.data.dump.gz
+  # scp root@SRV:/usr/local/cliente/tmpz/saas_cliente.data.dump.gz
 
-  # scp root@beta:/usr/local/soft4/tmpz/saas_cliente.data.struc.gz
+  # scp root@SRV:/usr/local/cliente/tmpz/saas_cliente.data.struc.gz
 
 |=================================================================================================================================|
 |                                                                                                                                 |
 |                                     Para baixar todos os arquivos da pasta utilize                                              |
 |                                                                                                                                 |
-|                                  scp -r root@beta:/usr/local/soft4/tmpz/* .                                                     |
+|                                  scp -r root@SRV:/usr/local/cliente/tmpz/* .                                                     |
 |                                                                                                                                 |
 |=================================================================================================================================|
 
@@ -73,7 +73,7 @@ Agora para testar se o arquivos está funcionando corretamente
 
  # Ao abrir o DBeaver, no lado esquerdo (Navegador de Banco de Dados), você localizou a conexão localhost.
 
-  # Você clicou na seta ao lado de Bancos de dados para listar os schemas que importou (saas_gestao, saas_grupomassa, saas_hering).
+  # Você clicou na seta ao lado de Bancos de dados para listar os schemas que importou (saas_cliente, saas_cliente, saas_cliente).
 
 2. Abrir o Editor de Comandos (A "Folha de Rascunho")
 

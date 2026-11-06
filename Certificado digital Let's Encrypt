@@ -1,27 +1,27 @@
 1º Criar regra de NAT para permitir acesso a porta 80:
    a) Acessar a VCloud Unifique
-   b) Acessar no site SC > Edge > 127858_SOFT4_GW_T1 > Serviços NAT
+   b) Acessar no site SC > Edge > 127858_dominio_GW_T1 > Serviços NAT
    c) Criar uma nova regra:
-        - Nome: romta - http
+        - Nome: SRV - http
         - Ação do NAT: DNAT
-        - IP Externo: 179.127.167.214
+        - IP Externo: xxx.xxx.xxx.xxx
         - Porta Externa: 80
-        - IP Interno: 192.168.34.8
+        - IP Interno: xxx.xxx.xxx.xxx
         - Aplicativo: HTTP (Para escolher o aplicativo, clique em editar, habilite "Escolha um aplicativo específico", procure pelo HTTP na lista.
 
 2º Acessar o servidor:
-    # ssh roma
+    # ssh SRV
 
 3º Alterne para o super usuário root:
     # sudo su
 
 4º Execute o comando para atualização do certificado, digite a opção 2 e o caminho do webroot do cliente
-    # certbot certonly -d suporte.megapc.com.br
+    # certbot certonly -d suporte.dominio.com.br
     # 2
-    # /var/www/vhosts/megapc.soft4.com.br/softdesk/public/
+    # /var/www/vhosts/cliente.dominio.com.br/servico/public/
 
 5º Certifique que não há erros no processo e recarregue a configuração do Apache
     # apachectl configtest
     # systemctl reload httpd
 
-6º Elimine a regra roma - http de NAT no VCloud para não mais permitir o acesso a porta 80.
+6º Elimine a regra SRV - http de NAT no VCloud para não mais permitir o acesso a porta 80.

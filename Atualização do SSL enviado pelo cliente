@@ -1,30 +1,30 @@
 1. Acessar o diretório onde estão os certificados baixados:
-    # cd "C:\Users\user\Downloads\certificado_suporte.edusoft.com.br-2025.05-2026.05"
+    # cd "C:\Users\user\Downloads\certificado_suporte.cliente.com.br-2025.05-2026.05"
 
 2. Listar os arquivos presentes na pasta:
     # ls
 
 3. Renomear os arquivos do certificado e da chave para indicar o novo período de validade (até 2026):
-    # mv .\suporte.edusoft.com.br.crt .\suporte.edusoft.com.br-2026.crt
-    # mv .\suporte.edusoft.com.br.key .\suporte.edusoft.com.br-2026.key
+    # mv .\suporte.cliente.com.br.crt .\suporte.cliente.com.br-2026.crt
+    # mv .\suporte.cliente.com.br.key .\suporte.cliente.com.br-2026.key
 
-4. Enviar os arquivos para o servidor remoto com o alias "agil", dentro do diretório do site:
-    # scp suporte* agil:/var/www/vhosts/edusoft.soft4.com.br
+4. Enviar os arquivos para o servidor remoto com o alias "SRV", dentro do diretório do site:
+    # scp suporte* SRV:/var/www/vhosts/cliente.dominio.com.br
 
 5. Conectar-se ao servidor via SSH:
-    # ssh agil
+    # ssh SRV
 
 6. Navegar até o diretório onde os arquivos foram enviados:
-    # cd /var/www/vhosts/edusoft.soft4.com.br/
+    # cd /var/www/vhosts/cliente.dominio.com.br/
 
 7. Mover o novo certificado para o diretório correto dentro da estrutura do Apache:
-    # mv suporte.edusoft.com.br-2026.crt /var/www/cliente.soft4.com.br/etc/pki/tls/certs/
+    # mv suporte.cliente.com.br-2026.crt /var/www/cliente.dominio.com.br/etc/pki/tls/certs/
 
 8. Mover a nova chave privada para o diretório seguro do Apache:
-    # mv suporte.edusoft.com.br-2026.key /var/www/cliente.soft4.com.br/etc/pki/tls/private/
+    # mv suporte.cliente.com.br-2026.key /var/www/cliente.dominio.com.br/etc/pki/tls/private/
 
 9. Editar o arquivo de configuração do Apache para atualizar os caminhos do certificado e chave:
-    # sudo vim /etc/httpd/sites-enabled/edusoft.soft4.com.br.conf
+    # sudo vim /etc/httpd/sites-enabled/cliente.dominio.com.br.conf
 
 10. Testar se a configuração do Apache está correta após a edição:
     # sudo apachectl configtest

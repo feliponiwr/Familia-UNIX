@@ -1,6 +1,6 @@
 1º Criar regra de NAT para permitir acesso a porta 80:
    a) Acessar a VCloud Unifique
-   b) Acessar no site SC > Edge > 127858_dominio_GW_T1 > Serviços NAT
+   b) Acessar no site SC > Edge > _dominio_ > Serviços NAT
    c) Criar uma nova regra:
         - Nome: SRV - http
         - Ação do NAT: DNAT

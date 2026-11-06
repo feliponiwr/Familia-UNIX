@@ -38,7 +38,7 @@ NO SERVIDOR:
 
 origem:SERVIDOR VELHO
 destino:SERVIDOR
-data:20250812
+data:data
 
 -- Exportar usuário e banco de dados do servidor origem e depois importar no servidor destino
 
@@ -47,7 +47,7 @@ data:20250812
 CREATE DATABASE IF NOT EXISTS `saas_CLIENTE` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS `saas_CLIENTE_homologacao` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-GRANT USAGE ON *.* TO `saas_CLIENTE`@`localhost` IDENTIFIED BY PASSWORD '*A763159FEC88863FFBE25F40DB1A1C05F6CF8597';
+GRANT USAGE ON *.* TO `saas_CLIENTE`@`localhost` IDENTIFIED BY PASSWORD '*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 GRANT ALL PRIVILEGES ON `saas_CLIENTE`.* TO `saas_CLIENTE`@`localhost`;
 GRANT ALL PRIVILEGES ON `saas_CLIENTE_homologacao`.* TO `saas_CLIENTE`@`localhost`;
 
@@ -56,10 +56,10 @@ GRANT ALL PRIVILEGES ON `saas_CLIENTE_homologacao`.* TO `saas_CLIENTE`@`localhos
 -- NO SERVIDOR MADRINHA
 -- --------------------------------------------------------
 
-ssh soft4
+ssh dominio
 
 -- Inativar temporariamente os sites. Adicionar ativo=0 abaixo da seção do cliente
-vim /usr/local/Multitask/mtmon/etc/mtmon_site_softdesk.conf
+vim /usr/local/servico/servico/etc/servico_site_servico.conf
 
 
 
@@ -68,8 +68,8 @@ vim /usr/local/Multitask/mtmon/etc/mtmon_site_softdesk.conf
 -- --------------------------------------------------------
 
 ssh SERVIDOR
-sudo du -sh /var/www/vhosts/CLIENTE.soft4.com.br
-mkdir /var/www/vhosts/CLIENTE.soft4.com.br
+sudo du -sh /var/www/vhosts/CLIENTE.dominio.com.br
+mkdir /var/www/vhosts/CLIENTE.dominio.com.br
 
 
 -- --------------------------------------------------------
@@ -78,7 +78,7 @@ mkdir /var/www/vhosts/CLIENTE.soft4.com.br
 
 ssh SERVIDOR VELHO
 sudo su
-cd /var/www/vhosts/CLIENTE.soft4.com.br && rsync -hzarPp --bwlimit=5M . SERVIDORlan:/var/www/vhosts/CLIENTE.soft4.com.br
+cd /var/www/vhosts/CLIENTE.dominio.com.br && rsync -hzarPp --bwlimit=5M . SERVIDORlan:/var/www/vhosts/CLIENTE.dominio.com.br
 
 
 -- --------------------------------------------------------
@@ -88,13 +88,13 @@ cd /var/www/vhosts/CLIENTE.soft4.com.br && rsync -hzarPp --bwlimit=5M . SERVIDOR
 ssh SERVIDOR VELHO
 sudo su
 -- Acessar o arquivo de configuração de crontab (acoes.conf) copiar os dados da instância CLIENTE para configurar no servidor destino e remover do arquivo do servidor origem
-vim /usr/local/soft4/etc/acoes.conf
--- CLIENTE=agendamento anexo-chamado atualizador chamados-suspensos cobranca-erp coletor contrato decurso-encerramento decurso-prazo despesa email imap impedimento integracao lembrete-configuracao pesquisa-satisfacao-periodica rat rotineiro sla sms softdesk solicitante whatsapp
+vim /usr/local/dominio/etc/acoes.conf
+-- CLIENTE=agendamento anexo-chamado atualizador chamados-suspensos cobranca-erp coletor contrato decurso-encerramento decurso-prazo despesa email imap impedimento integracao lembrete-configuracao pesquisa-satisfacao-periodica rat rotineiro sla sms servico solicitante whatsapp
 ls -lah /etc/httpd/sites-enabled/
-mv /etc/httpd/sites-enabled/CLIENTE.soft4.com.br.conf /var/www/vhosts/CLIENTE.soft4.com.br/CLIENTE.soft4.com.br.conf
-mv /etc/opt/remi/php83/php-fpm.d/CLIENTE.conf /var/www/vhosts/CLIENTE.soft4.com.br/CLIENTE.conf
-cd /var/www/vhosts/CLIENTE.soft4.com.br && cd softdesk && php artisan down && touch storage/app/adm/status-atualizacao && cd ../homologacao && php artisan down && touch storage/app/adm/status-atualizacao
-cd /var/www/vhosts/CLIENTE.soft4.com.br/ && mysqldump -uroot -p'e&&*E8gzS2XWbfmO' saas_CLIENTE --routines --lock-tables=false | gzip > saas_CLIENTE-pre-migracao-20250812.sql.gz && mysqldump -uroot -p'e&&*E8gzS2XWbfmO' saas_CLIENTE_homologacao --routines --lock-tables=false | gzip > saas_CLIENTE_homologacao-pre-migracao-20250812.sql.gz && ls -lah
+mv /etc/httpd/sites-enabled/CLIENTE.dominio.com.br.conf /var/www/vhosts/CLIENTE.dominio.com.br/CLIENTE.dominio.com.br.conf
+mv /etc/opt/remi/php83/php-fpm.d/CLIENTE.conf /var/www/vhosts/CLIENTE.dominio.com.br/CLIENTE.conf
+cd /var/www/vhosts/CLIENTE.dominio.com.br && cd servico && php artisan down && touch storage/app/adm/status-atualizacao && cd ../homologacao && php artisan down && touch storage/app/adm/status-atualizacao
+cd /var/www/vhosts/CLIENTE.dominio.com.br/ && mysqldump -uroot -p'xxxxxxxxxxxxxxxxx' saas_CLIENTE --routines --lock-tables=false | gzip > saas_CLIENTE-pre-migracao-data.sql.gz && mysqldump -uroot -p'xxxxxxxxxxxxxxxxxxxxxxx' saas_CLIENTE_homologacao --routines --lock-tables=false | gzip > saas_CLIENTE_homologacao-pre-migracao-data.sql.gz && ls -lah
 
 
 -- --------------------------------------------------------
@@ -105,7 +105,7 @@ ssh SERVIDOR VELHO
 sudo su
 apachectl configtest
 service httpd reload
-cd /var/www/vhosts/CLIENTE.soft4.com.br && sudo rsync -hzarPp . SERVIDORlan:/var/www/vhosts/CLIENTE.soft4.com.br
+cd /var/www/vhosts/CLIENTE.dominio.com.br && sudo rsync -hzarPp . SERVIDORlan:/var/www/vhosts/CLIENTE.dominio.com.br
 
 
 -- --------------------------------------------------------
@@ -120,25 +120,25 @@ Apontar os DNS para o novo servidor
 -- --------------------------------------------------------
 
 ssh SERVIDOR
-sudo mv /var/www/vhosts/CLIENTE.soft4.com.br/CLIENTE.soft4.com.br.conf /etc/httpd/sites-enabled && sudo vim /etc/httpd/sites-enabled/CLIENTE.soft4.com.br.conf
+sudo mv /var/www/vhosts/CLIENTE.dominio.com.br/CLIENTE.dominio.com.br.conf /etc/httpd/sites-enabled && sudo vim /etc/httpd/sites-enabled/CLIENTE.dominio.com.br.conf
 sudo chmod 755 -R /etc/httpd/sites-enabled
-sudo chown root:soft4 -R /etc/httpd/sites-enabled
+sudo chown root:dominio -R /etc/httpd/sites-enabled
 ls -lah /etc/httpd/sites-enabled
 sudo mv CLIENTE.conf /etc/opt/remi/php83/php-fpm.d/
 sudo apachectl configtest
 sudo service httpd reload
-gunzip < /var/www/vhosts/CLIENTE.soft4.com.br/saas_CLIENTE-pre-migracao-20250812.sql.gz | mysql -uroot -p'e&&*E8gzS2XWbfmO' saas_CLIENTE && echo "Banco importado: saas_CLIENTE" && gunzip < /var/www/vhosts/CLIENTE.soft4.com.br/saas_CLIENTE_homologacao-pre-migracao-20250812.sql.gz | mysql -uroot -p'e&&*E8gzS2XWbfmO' saas_CLIENTE_homologacao && echo "Banco importado: saas_CLIENTE_homologacao"
-sudo chmod 775 -R /var/www/vhosts/CLIENTE.soft4.com.br && sudo chown apache:soft4 -R /var/www/vhosts/CLIENTE.soft4.com.br
+gunzip < /var/www/vhosts/CLIENTE.dominio.com.br/saas_CLIENTE-pre-migracao-data.sql.gz | mysql -uroot -p'xxxxxxxxxxxxxxxxxxxxxxx' saas_CLIENTE && echo "Banco importado: saas_CLIENTE" && gunzip < /var/www/vhosts/CLIENTE.dominio.com.br/saas_CLIENTE_homologacao-pre-migracao-data.sql.gz | mysql -uroot -p'xxxxxxxxxxxxxxxxxxxxxxx' saas_CLIENTE_homologacao && echo "Banco importado: saas_CLIENTE_homologacao"
+sudo chmod 775 -R /var/www/vhosts/CLIENTE.dominio.com.br && sudo chown apache:dominio -R /var/www/vhosts/CLIENTE.dominio.com.br
 
 
 -- --------------------------------------------------------
--- ATUALIZAR VERSÕES DO SOFTDESK
+-- ATUALIZAR VERSÕES DO servico
 -- --------------------------------------------------------
 
 Executar atualizador
 Liberar acesso assim que a atualização for concluída
-cd /var/www/vhosts/CLIENTE.soft4.com.br && cd softdesk && php artisan up && rm -f storage/app/adm/status-atualizacao
-cd /var/www/vhosts/CLIENTE.soft4.com.br && cd homologacao && php artisan up && rm -f storage/app/adm/status-atualizacao
+cd /var/www/vhosts/CLIENTE.dominio.com.br && cd servico && php artisan up && rm -f storage/app/adm/status-atualizacao
+cd /var/www/vhosts/CLIENTE.dominio.com.br && cd homologacao && php artisan up && rm -f storage/app/adm/status-atualizacao
 
 
 -- --------------------------------------------------------
@@ -146,7 +146,7 @@ cd /var/www/vhosts/CLIENTE.soft4.com.br && cd homologacao && php artisan up && r
 -- --------------------------------------------------------
 
 -- Configurar crontab
-sudo vim /usr/local/soft4/etc/acoes.conf
+sudo vim /usr/local/dominio/etc/acoes.conf
 rm /var/www/vhosts/*/saas_*_homologacao*.sql.gz
 
 
@@ -163,15 +163,15 @@ rm /var/www/vhosts/*/saas_*_homologacao*.sql.gz
 -- NO SERVIDOR MADRINHA
 -- --------------------------------------------------------
 
-ssh soft4
+ssh dominio
 
 -- Reativar os sites
-vim /usr/local/Multitask/mtmon/etc/mtmon_site_softdesk.conf
+vim /usr/local/servico/servico/etc/servico_site_servico.conf
 
 
 
 -- --------------------------------------------------------
--- NO SOFTDESK
+-- NO servico
 -- --------------------------------------------------------
 
 

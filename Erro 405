@@ -2,7 +2,7 @@
 
 **Certifique-se de que o diretório de homologação possui o arquivo .htaccess correto e que o Apache tem permissão para lê-lo.**
 
- # ls -la /var/www/vhosts/acensco.soft4.com.br/homologacao/public/.htaccess
+ # ls -la /var/www/vhosts/cliente.DOMINIO.com.br/homologacao/public/.htaccess
 
 **(Se for uma instalação Laravel, o .htaccess deve estar dentro da pasta public e o Apache deve apontar para lá).**
 
@@ -13,12 +13,12 @@
 Abra o arquivo de configuração:
 
 
- # vim /etc/httpd/sites-enabled/acensco.soft4.com.br.conf
+ # vim /etc/httpd/sites-enabled//cliente.DOMINIO.com.br.conf
 
 **Verifique se a seção referente à homologação permite a sobrescrita de diretivas**
 
 Apache
-<Directory "/var/www/vhosts/acensco.soft4.com.br/homologacao">
+<Directory "/var/www/vhosts/cliente.DOMINIO.com.br/homologacao">
     Options Indexes FollowSymLinks
     AllowOverride All
     Require all granted
@@ -32,7 +32,7 @@ Apache
 Acesse o diretório e execute:
 
 
-# cd /var/www/vhosts/acensco.soft4.com.br/homologacao/ && /usr/bin/php83 artisan route:clear && /usr/bin/php83 artisan cache:clear && /usr/bin/php83 artisan config:clear
+# cd /var/www/vhosts/cliente.DOMINIO.com.br/homologacao/ && /usr/bin/php83 artisan route:clear && /usr/bin/php83 artisan cache:clear && /usr/bin/php83 artisan config:clear
 
 4. Se o problema persistir, verifique os Logs de Erro
 

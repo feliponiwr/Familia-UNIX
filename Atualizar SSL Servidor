@@ -1,4 +1,4 @@
-Para atualizar o certificado do endereço de *soft4.com.br
+Para atualizar o certificado do endereço de *dominio.com.br
 
 **Baixar os  arquivos enviados no chamado**
 
@@ -8,11 +8,11 @@ Enviar os arquivos para uma pasta dentro do servidor.
 
 Exemplo;
 
-# scp soft4.com.br.crt root@beta:/usr/local/soft4/tmpz/
+# scp dominio.com.br.crt root@beta:/usr/local/dominio/tmpz/
 
- # scp soft4.com.br.ca-bundle root@beta:/usr/local/soft4/tmpz/
+ # scp dominio.com.br.ca-bundle root@beta:/usr/local/dominio/tmpz/
 
-  # scp soft4.com.br.key root@beta:/usr/local/soft4/tmpz/
+  # scp dominio.com.br.key root@beta:/usr/local/dominio/tmpz/
 
 
 No servidor
@@ -25,15 +25,15 @@ No servidor
 
 Encotrar as linahs
 
-# SSLCertificateFile /etc/pki/tls/certs/soft4.com.br.crt
- # SSLCertificateKeyFile /etc/pki/tls/private/soft4.com.br.key
-  # SSLCACertificateFile /etc/pki/tls/certs/soft4.com.br.ca-bundle
+# SSLCertificateFile /etc/pki/tls/certs/dominio.com.br.crt
+ # SSLCertificateKeyFile /etc/pki/tls/private/dominio.com.br.key
+  # SSLCACertificateFile /etc/pki/tls/certs/dominio.com.br.ca-bundle
 
 Copiar as linhas,e ajustar para o caminho de teste com o nome "novo"
 
-# SSLCertificateFile /usr/local/soft4/tmpz/soft4.com.br.crt
- # SSLCertificateKeyFile /usr/local/soft4/tmpz/soft4.com.br.key
-  # SSLCACertificateFile /usr/local/soft4/tmpz/soft4.com.br.ca-bundle
+# SSLCertificateFile /usr/local/dominio/tmpz/dominio.com.br.crt
+ # SSLCertificateKeyFile /usr/local/dominio/tmpz/dominio.com.br.key
+  # SSLCACertificateFile /usr/local/dominio/tmpz/dominio.com.br.ca-bundle
 
 
 Testar se a configuração do Apache está correta após a edição:

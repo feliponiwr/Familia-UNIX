@@ -6,7 +6,7 @@ Criar um Trial
 	# Nome do DNS (Nome do Cliente)
 	# Tipo de registro (cname)
 	# TTL --> 1 HORA
-	# Nome canonico (servidordestino.sotf4.com.br)
+	# Nome canonico (servidordestino.dominio.com.br)
 	
 2º Rodar o script "deploy-instalacao"
 
@@ -26,7 +26,7 @@ Executar o script
   # CLIENTE
 
 
-  *Isso serve para buscar o ID do cliente no sistema da Soft4.*
+  *Isso serve para buscar o ID do cliente no sistema da dominio.*
 
 5º Selecionar cliente na lista
 
@@ -50,7 +50,7 @@ Geralmente SaaS cliente → escolha n (trial/produção apenas).
 
   # Ele tenta ler de ~/.ssh/git_access_token.
 
-*Se não existir, vai pedir para digitar o token de acesso ao GitHub da Soft4.*
+*Se não existir, vai pedir para digitar o token de acesso ao GitHub da dominio.*
 
 Digite o token e ele será salvo.
 
@@ -67,11 +67,11 @@ Digite o token e ele será salvo.
 
 9º Download e preparação do sistema
 
-  # O script baixa as últimas versões do Softdesk v4 e v5 do GitHub.
+  # O script baixa as últimas versões do servico v4 e v5 do GitHub.
 
-  # Cria a estrutura de pastas para o cliente CLIENTE.soft4.com.br.
+  # Cria a estrutura de pastas para o cliente CLIENTE.dominio.com.br.
 
-  # Gera arquivos de configuração do Apache (CLIENTE.soft4.com.br.conf).
+  # Gera arquivos de configuração do Apache (CLIENTE.dominio.com.br.conf).
 
   # Prepara script de links simbólicos (criar-link-simbolico.sh).
 
@@ -95,7 +95,7 @@ Digite o token e ele será salvo.
 
    # Exemplo:
 
-   # historico/CLIENTE.soft4.com.br.tar.gz
+   # historico/CLIENTE.dominio.com.br.tar.gz
 
 
 12º Etapas manuais no servidor
@@ -104,27 +104,27 @@ O próprio script imprime no final os comandos que você deve rodar, por exemplo
 
   # Transferir pacote:
 
-   # scp historico/CLIENTE.soft4.com.br.tar.gz soft4@belo:/var/www/vhosts
+   # scp historico/CLIENTE.dominio.com.br.tar.gz dominio@SRV:/var/www/vhosts
 
 
 13º Acessar o servidor:
 
-  # ssh soft4@belo -p 7223
+  # ssh dominio@SRV -p 7223
 
 
 Descompactar:
 
-cd /var/www/vhosts && tar -zxf CLIENTE.soft4.com.br.tar.gz
+cd /var/www/vhosts && tar -zxf CLIENTE.dominio.com.br.tar.gz
 
 
 14º Criar bancos e importar:
 
-  # mysql -uroot -p < CLIENTE.soft4.com.br.sql && gunzip < saas_saas.sql.gz | mysql -usaas_CLIENTE -p'XXXX' saas_CLIENTE
+  # mysql -uroot -p < CLIENTE.dominio.com.br.sql && gunzip < saas_saas.sql.gz | mysql -usaas_CLIENTE -p'XXXX' saas_CLIENTE
 
 
 15º Mover arquivos de configuração e recarregar Apache:
 
-  # sudo mv CLIENTE.soft4.com.br.conf /etc/httpd/sites-enabled/
+  # sudo mv CLIENTE.dominio.com.br.conf /etc/httpd/sites-enabled/
   # sudo systemctl reload httpd && sudo systemctl restart php83-php-fpm netdata
 
 
@@ -135,7 +135,7 @@ cd /var/www/vhosts && tar -zxf CLIENTE.soft4.com.br.tar.gz
 
 17º Instalar dependências Laravel:
 
-  # cd softdesk && composer install --no-dev && php artisan key:generate && php artisan migrate --force
+  # cd servico && composer install --no-dev && php artisan key:generate && php artisan migrate --force
 
 
 18º Documentação final
@@ -152,7 +152,7 @@ cd /var/www/vhosts && tar -zxf CLIENTE.soft4.com.br.tar.gz
 
        # phpMyAdmin
 
-Você deve copiar isso para o dossiê do cliente no Softdesk da Soft4.
+Você deve copiar isso para o dossiê do cliente no servico da dominio.
 
 
 

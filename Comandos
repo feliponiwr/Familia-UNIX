@@ -104,7 +104,7 @@ swapon -a
 Para mudar o host do Windows
  # Abrir o cloco de notas como administrador
   # Arquivo --> Abrir --> e colar o caminho C:\Windows\System32\drivers\etc\hosts
-   # Acessar o arquivo host, adiconar o ip e o endereço https --> cliente.soft4.com.br
+   # Acessar o arquivo host, adiconar o ip e o endereço https --> cliente.dominio.com.br
     # Depois dar o comando --> ipconfig /flushdns
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -142,11 +142,11 @@ Para exluir a base
 
 Criar Databases
 
-CREATE DATABASE softdesk
+CREATE DATABASE servico
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-CREATE DATABASE softdesk_homologacao
+CREATE DATABASE servico_homologacao
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
@@ -162,9 +162,9 @@ Mudar Senha do ROOT do Servidor
 
 Os Backups dos clientes ficam nos seguintes caminhos
 
-  # /usr/local/soft4/bin/backupRemotoMariaDB.sh
+  # /usr/local/dominio/bin/backupRemotoMariaDB.sh
 
-    # /usr/local/soft4/bin/backupRemotoVhosts.sh
+    # /usr/local/dominio/bin/backupRemotoVhosts.sh
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

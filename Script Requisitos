@@ -1,18 +1,18 @@
 # 1. Criar e abrir o arquivo com o editor de sua preferência
-vim validar_softdesk.sh
+vim validar_servico.sh
 
 # 2. Após salvar (:wq), dê a permissão
-chmod +x validar_softdesk.sh
+chmod +x validar_servico.sh
 
 # 3. Execute como root
-./validar_softdesk.sh
+./validar_servico.sh
 
 
 =================================================================================================================================
 
 #!/bin/bash
 
-# --- CHECKLIST SOFTDESK V5 (REDO PARA RHEL/ORACLE/ROCKY) ---
+# --- CHECKLIST servico V5 (REDO PARA RHEL/ORACLE/ROCKY) ---
 echo "Iniciando validacao para sistemas RHEL-based..."
 
 # Função para instalar pacotes via DNF

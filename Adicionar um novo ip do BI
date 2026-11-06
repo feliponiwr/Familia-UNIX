@@ -1,6 +1,6 @@
 1º Acessar o phpMyAdmin do servidor, utilizar root e senha
 
-https://servidor.soft4.com.br/phpmyadmin/index.php?route=/server/privileges&viewing_mode=server
+https://servidor.cliente.com.br/phpmyadmin/index.php?route=/server/privileges&viewing_mode=server
 
 2º Acessar Contas de usuário e procurar o bi do cliente
     # bi_cliente
@@ -19,19 +19,19 @@ https://servidor.soft4.com.br/phpmyadmin/index.php?route=/server/privileges&view
 
 6º Acessar o ambiente do dc/VMcloud, e adicionar os ip's no conjunto de ip do servidor onde esta o cliente
 
-    # Rede ---> Edges ---> 127858_SOFT4_GW_T1 ---> Segurança ---> Conjuntos de IP's
+    # Rede ---> Edges ---> 127858_cliente_GW_T1 ---> Segurança ---> Conjuntos de IP's
 
 7º Selecionar o cliente, editar e adicionar o novo ip
 
 8º Adiconar os ip's no servidor 
 
     # ssh servidor
-    # sudo vim /usr/local/soft4/etc/softdesk.iptables.conf
+    # sudo vim /usr/local/cliente/etc/cliente.iptables.conf
     # :wq
 
 9º Ou para adicionar manualmente
 
-    # sudo /usr/sbin/iptables-nft -I INPUT -s 999.999.999.999 -j ACCEPT -p tcp --dport 3306 -m comment --comment "Cliente: soft4"
+    # sudo /usr/sbin/iptables-nft -I INPUT -s 999.999.999.999 -j ACCEPT -p tcp --dport 3306 -m comment --comment "Cliente: cliente"
 
 10] -- Listar regras IPTABLES
 
